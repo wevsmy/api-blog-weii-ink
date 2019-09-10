@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     "hello",
     'rest_framework',
     'api.apps.ApiConfig',
+    'rest_framework_swagger',
 ]
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissions',
         # 'rest_framework.permissions.IsAuthenticated',

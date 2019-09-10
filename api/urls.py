@@ -10,54 +10,19 @@
 @File: urls.py.py
 @Time: 19-9-9 下午1:00
 """
-
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
-from rest_framework.schemas import get_schema_view
+from rest_framework.routers import DefaultRouter
+from rest_framework_swagger.views import get_swagger_view
 
 from api import views
 
-
-# Serializers define the API representation.
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('url', 'username', 'email', 'is_staff')
-
-
-# ViewSets define the view behavior.
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    retrieve:
-        Return a user instance.
-
-    list:
-        Return all users, ordered by most recently joined.
-
-    create:
-        Create a new user.
-
-    delete:
-        Remove an existing user.
-
-    partial_update:
-        Update one or more fields on an existing user.
-
-    update:
-        Update a user.
-    """
-
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
 # Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet, base_name='user')
+router = DefaultRouter()
+router.register(r'users', views.UserViewSet, base_name='user')
+router.register(r'groups', views.GroupViewSet, base_name='group')
 
 # Create our schema's view w/ the get_schema_view() helper method. Pass in the proper Renderers for swagger
-schema_view = get_schema_view(title='Users API', description="API for all things")
+schema_view = get_swagger_view(title='Users API')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
