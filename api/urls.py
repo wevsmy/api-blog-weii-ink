@@ -67,5 +67,6 @@ urlpatterns = [
 
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    url(r'^githubComments/$', views.GetIssuesComments.as_view()),
     url(r'^test/$', views.GetMessageView.as_view()),
 ]
