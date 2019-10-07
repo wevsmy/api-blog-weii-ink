@@ -12,7 +12,8 @@ Make sure you have Python 3.7 [installed locally](http://install.python-guide.or
 $ git clone https://github.com/wevsmy/api_blog_weii_ink.git
 $ cd api_blog_weii_ink
 
-$ python3 -m venv api_blog_weii_ink
+$ python3 -m venv venv
+$ .\venv\Scripts\activate
 $ pip install -r requirements.txt
 
 $ createdb api_blog_weii_ink
